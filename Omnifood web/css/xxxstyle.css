@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: white;
+    color: rgb(77, 77, 77);
+    font-family: "lato", Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto 0 auto;
+}
+
+header {
+    background-image: url(img/hero.jpg);
+    height: 100vh;
+
+
+}
