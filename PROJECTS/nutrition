@@ -1,0 +1,43 @@
+from optparse import Values
+import requests
+import json
+from collections import Counter
+
+app_id = "76ff0164"
+app_key = "9dcfcdac3c276ac96d6afbe826027f4b"
+
+URL = "https://api.edamam.com/api/food-database/v2/parser"
+
+ingred = ["avocado", "apple", "parsley", "potato", "almond"]
+recipe = []
+result = {}
+
+for ingredience in ingred:
+
+    querystring = {"app_id":app_id, 
+                "app_key":app_key, 
+                "ingr":ingredience, 
+                "category":"generic-foods"}
+                
+    r = requests.get(URL, params=querystring, verify=False)
+
+    data = r.json()
+    label = (data["parsed"][0]["food"]["label"])
+    nutrients = (data["parsed"][0]["food"]["nutrients"])
+
+    recipe.append({"label":label, "nutrients":nutrients})
+
+# summing up the parameters
+
+values = []
+for dic in recipe:
+    temp = dic["nutrients"]
+    values.append(temp)
+    
+for dic in values:
+    for item in dic.keys():
+        result[item] = result.get(item, 0) + dic[item]
+
+print(result)
+
+#print(f"Initial result: {recipe}")
